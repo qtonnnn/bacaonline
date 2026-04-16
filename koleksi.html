@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koleksi Saya · Pustaka Purnama</title>
+    <!-- Font & Icons (konsisten) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #faf9f6;
+            font-family: 'Inter', sans-serif;
+            color: #2c2c2c;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        .wrapper {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* === HEADER — identik === */
+        .main-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0dcd3;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: #7a5d4a;
+        }
+
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #2b2a28;
+        }
+
+        .logo-sub {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: #7e7a72;
+            margin-left: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 400;
+            color: #3e3a34;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            letter-spacing: -0.01em;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a.active {
+            color: #7a5d4a;
+            border-bottom: 1px solid #7a5d4a;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #7a5d4a;
+            border-bottom: 1px solid #7a5d4a;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .user-actions a {
+            color: #3e3a34;
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+
+        .user-actions a:hover {
+            color: #7a5d4a;
+        }
+
+        /* === PROFIL SINGKAT PEMBACA === */
+        .reader-profile {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2.8rem;
+            padding: 1.5rem 2rem;
+            background: #ffffffd6;
+            border-radius: 28px;
+            border: 1px solid #e4dfd7;
+            box-shadow: 0 8px 18px -8px rgba(70, 50, 35, 0.04);
+            flex-wrap: wrap;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: #d9d2c5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.6rem;
+            color: #7a5d4a;
+            border: 3px solid #f0ebe4;
+        }
+
+        .stats {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #1f1e1c;
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            color: #6b635a;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-greeting {
+            margin-left: auto;
+            font-size: 1.2rem;
+            color: #5e554a;
+            font-style: italic;
+        }
+
+        /* === TAB KOLEKSI (Sedang Dibaca / Selesai / Ingin Dibaca) === */
+        .collection-tabs {
+            display: flex;
+            gap: 2.5rem;
+            margin-bottom: 2.2rem;
+            border-bottom: 1px solid #e0dcd3;
+            padding-bottom: 0.8rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #8c8277;
+            cursor: pointer;
+            padding: 0.2rem 0;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: #2b2a28;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #7a5d4a;
+        }
+
+        .tab-btn .count-badge {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            background: #e8e2d9;
+            color: #4f443b;
+            padding: 2px 10px;
+            border-radius: 40px;
+            margin-left: 10px;
+            font-weight: 400;
+        }
+
+        /* === GRID KOLEKSI (3 kolom, lebih personal dengan progress) === */
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .collection-card {
+            background: transparent;
+            transition: transform 0.2s;
+            border-radius: 16px;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card-inner {
+            display: flex;
+            gap: 1.2rem;
+            background: #ffffffc7;
+            padding: 1.2rem 1.2rem 1.2rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #ece5dd;
+            box-shadow: 0 6px 12px -6px rgba(0,0,0,0.04);
+            backdrop-filter: blur(2px);
+            transition: box-shadow 0.3s;
+        }
+
+        .card-cover {
+            width: 90px;
+            height: 130px;
+            border-radius: 10px;
+            background: #ddd2c6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #7a5d4a;
+            flex-shrink: 0;
+            border: 1px solid #dfd5ca;
+            box-shadow: 0 6px 10px -4px rgba(0,0,0,0.05);
+        }
+
+        .card-detail {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 0.1rem;
+            color: #1f1e1c;
+        }
+
+        .card-author {
+            font-size: 0.85rem;
+            color: #6f675d;
+            margin-bottom: 0.6rem;
+        }
+
+        /* progress bar khas koleksi */
+        .progress-area {
+            margin: 0.5rem 0 0.6rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #6e655b;
+            margin-bottom: 4px;
+        }
+
+        .progress-bar-bg {
+            height: 5px;
+            background: #e4ddd4;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 5px;
+            background: #7a5d4a;
+            border-radius: 10px;
+            width: 0%; /* akan diatur manual */
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.6rem;
+        }
+
+        .card-actions button {
+            background: none;
+            border: none;
+            color: #7a7166;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 2px 4px;
+        }
+
+        .card-actions button:hover {
+            color: #7a5d4a;
+        }
+
+        /* bagian "selesai" tanpa progress, tampil rating */
+        .finished-badge {
+            color: #b28b5e;
+            font-size: 0.8rem;
+            margin: 0.3rem 0 0.2rem;
+        }
+
+        .want-read-badge {
+            margin: 0.3rem 0 0.2rem;
+            font-size: 0.75rem;
+            color: #9b8e7e;
+        }
+
+        /* === RAK TAMBAHAN (REKOMENDASI KOLEKSI) === */
+        .section-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 3.5rem 0 1.5rem;
+        }
+
+        .section-label h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 2rem;
+            color: #2b2a28;
+        }
+
+        .section-label a {
+            text-decoration: none;
+            color: #7a5d4a;
+            font-weight: 400;
+            border-bottom: 1px dotted #b7a089;
+        }
+
+        .suggestion-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .suggestion-item {
+            background: transparent;
+        }
+
+        .suggestion-cover {
+            aspect-ratio: 2/3;
+            background: #e0d8ce;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7a5d4a;
+            font-size: 2rem;
+            border: 1px solid #e3dbd1;
+        }
+
+        .suggestion-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .suggestion-author {
+            font-size: 0.8rem;
+            color: #756e64;
+        }
+
+        .btn-add {
+            margin-top: 8px;
+            background: transparent;
+            border: 1px solid #cfc6bb;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            color: #5e4e40;
+            cursor: pointer;
+        }
+
+        /* === FOOTER === */
+        .main-footer {
+            margin-top: 4rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid #e0dcd3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #6f685f;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #6f685f;
+            font-weight: 300;
+        }
+
+        .footer-links a:hover {
+            color: #7a5d4a;
+        }
+
+        /* responsif */
+        @media (max-width: 900px) {
+            .collection-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .suggestion-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .reader-profile {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .profile-greeting {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .collection-grid, .suggestion-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                gap: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <!-- header (konsisten) -->
+    <header class="main-header">
+        <div class="logo-area">
+            <i class="fas fa-feather-alt logo-icon"></i>
+            <span class="logo-text">Pustaka Purnama</span>
+            <span class="logo-sub">KOLEKSI</span>
+        </div>
+        <div class="nav-links">
+            <a href="#">Beranda</a>
+            <a href="#">Jelajah</a>
+            <a href="#" class="active">Koleksi</a>
+            <a href="#">Tentang</a>
+        </div>
+        <div class="user-actions">
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#"><i class="fas fa-bookmark" style="color: #7a5d4a;"></i></a>
+            <a href="#"><i class="far fa-user-circle"></i></a>
+        </div>
+    </header>
+
+    <!-- Profil pembaca & ringkasan koleksi -->
+    <div class="reader-profile">
+        <div class="avatar">
+            <i class="fas fa-user-astronaut"></i>
+        </div>
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Sedang dibaca</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">47</div>
+                <div class="stat-label">Selesai</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">23</div>
+                <div class="stat-label">Ingin dibaca</div>
+            </div>
+        </div>
+        <div class="profile-greeting">
+            <i class="fas fa-quote-right" style="margin-right: 6px; opacity: 0.6;"></i> Rak bukumu, kisahmu.
+        </div>
+    </div>
+
+    <!-- Tabs Koleksi -->
+    <div class="collection-tabs">
+        <button class="tab-btn active">Sedang Dibaca <span class="count-badge">4</span></button>
+        <button class="tab-btn">Selesai <span class="count-badge">8</span></button>
+        <button class="tab-btn">Ingin Dibaca <span class="count-badge">6</span></button>
+    </div>
+
+    <!-- Grid Koleksi (menampilkan "Sedang Dibaca" sebagai default) -->
+    <div class="collection-grid">
+        <!-- Item 1 - progress 68% -->
+        <div class="collection-card">
+            <div class="card-inner">
+                <div class="card-cover cover-1"><i class="fas fa-book-open"></i></div>
+                <div class="card-detail">
+                    <div class="card-title">Laut Bercerita</div>
+                    <div class="card-author">Leila S. Chudori</div>
+                    <div class="progress-area">
+                        <div class="progress-label"><span>Hlm 234/342</span><span>68%</span></div>
+                        <div class="progress-bar-bg"><div class="progress-fill" style="width:68%"></div></div>
+                    </div>
+                    <div class="card-actions">
+                        <button><i class="fas fa-book-reader"></i></button>
+                        <button><i class="far fa-bookmark"></i></button>
+                        <button><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Item 2 - progress 32% -->
+        <div class="collection-card">
+            <div class="card-inner">
+                <div class="card-cover cover-2"><i class="fas fa-tree"></i></div>
+                <div class="card-detail">
+                    <div class="card-title">Ronggeng Dukuh Paruk</div>
+                    <div class="card-author">Ahmad Tohari</div>
+                    <div class="progress-area">
+                        <div class="progress-label"><span>Hlm 98/306</span><span>32%</span></div>
+                        <div class="progress-bar-bg"><div class="progress-fill" style="width:32%"></div></div>
+                    </div>
+                    <div class="card-actions">
+                        <button><i class="fas fa-book-reader"></i></button>
+                        <button><i class="far fa-bookmark"></i></button>
+                        <button><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Item 3 - progress 91% -->
+        <div class="collection-card">
+            <div class="card-inner">
+                <div class="card-cover cover-3"><i class="fas fa-crown"></i></div>
+                <div class="card-detail">
+                    <div class="card-title">Cantik Itu Luka</div>
+                    <div class="card-author">Eka Kurniawan</div>
+                    <div class="progress-area">
+                        <div class="progress-label"><span>Hlm 456/500</span><span>91%</span></div>
+                        <div class="progress-bar-bg"><div class="progress-fill" style="width:91%"></div></div>
+                    </div>
+                    <div class="card-actions">
+                        <button><i class="fas fa-book-reader"></i></button>
+                        <button><i class="fas fa-bookmark" style="color:#7a5d4a;"></i></button>
+                        <button><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Item 4 - progress 15% -->
+        <div class="collection-card">
+            <div class="card-inner">
+                <div class="card-cover cover-4"><i class="fas fa-landmark"></i></div>
+                <div class="card-detail">
+                    <div class="card-title">Bumi Manusia</div>
+                    <div class="card-author">Pramoedya Ananta Toer</div>
+                    <div class="progress-area">
+                        <div class="progress-label"><span>Hlm 40/268</span><span>15%</span></div>
+                        <div class="progress-bar-bg"><div class="progress-fill" style="width:15%"></div></div>
+                    </div>
+                    <div class="card-actions">
+                        <button><i class="fas fa-book-reader"></i></button>
+                        <button><i class="far fa-bookmark"></i></button>
+                        <button><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Selesai dibaca (contoh preview, sebenarnya di tab terpisah tapi sebagai showcase) 
+         kita tambahkan satu baris kecil di bawah untuk memperkaya -->
+    <div style="margin-top: 1rem;">
+        <span style="color:#7a5d4a; font-weight: 300;"><i class="fas fa-check-circle"></i> Terakhir selesai: <strong>Laskar Pelangi</strong> (2 hari lalu) — </span>
+        <a href="#" style="color:#5e4739; text-decoration: none; border-bottom:1px dotted;">lihat semua selesai →</a>
+    </div>
+
+    <!-- Bagian: "Ingin Dibaca" preview ringkas -->
+    <div class="section-label" style="margin-top: 3.5rem;">
+        <h2>Ingin Dibaca</h2>
+        <a href="#">Kelola daftar <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="suggestion-grid">
+        <div class="suggestion-item">
+            <div class="suggestion-cover cover-5"><i class="fas fa-cloud-sun"></i></div>
+            <div class="suggestion-title">Pulang</div>
+            <div class="suggestion-author">Tere Liye</div>
+            <button class="btn-add"><i class="fas fa-plus"></i> Mulai baca</button>
+        </div>
+        <div class="suggestion-item">
+            <div class="suggestion-cover cover-6"><i class="fas fa-heart"></i></div>
+            <div class="suggestion-title">Gadis Kretek</div>
+            <div class="suggestion-author">Ratih Kumala</div>
+            <button class="btn-add"><i class="fas fa-plus"></i> Mulai baca</button>
+        </div>
+        <div class="suggestion-item">
+            <div class="suggestion-cover cover-7"><i class="fas fa-brain"></i></div>
+            <div class="suggestion-title">Filosofi Teras</div>
+            <div class="suggestion-author">Henry Manampiring</div>
+            <button class="btn-add"><i class="fas fa-plus"></i> Mulai baca</button>
+        </div>
+        <div class="suggestion-item">
+            <div class="suggestion-cover cover-8"><i class="fas fa-compass"></i></div>
+            <div class="suggestion-title">Supernova</div>
+            <div class="suggestion-author">Dee Lestari</div>
+            <button class="btn-add"><i class="fas fa-plus"></i> Mulai baca</button>
+        </div>
+    </div>
+
+    <!-- Rekomendasi berdasarkan koleksi -->
+    <div class="section-label">
+        <h2>Karena kamu menyukai "Laut Bercerita"</h2>
+        <a href="#">Lihat semua</a>
+    </div>
+    <div class="suggestion-grid">
+        <div class="suggestion-item">
+            <div class="suggestion-cover cover-1"><i class="fas fa-feather"></i></div>
+            <div class="suggestion-title">Perahu Kertas</div>
+            <div class="suggestion-author">Dee Lestari</div>
+        </div>
+        <div class="suggestion-item">
+            <div class="suggestion-cover cover-2"><i class="fas fa-water"></i></div>
+            <div class="suggestion-title">Negeri 5 Menara</div>
+            <div class="suggestion-author">A. Fuadi</div>
+        </div>
+        <div class="suggestion-item">
+            <div class="suggestion-cover cover-3"><i class="fas fa-mountain"></i></div>
+            <div class="suggestion-title">Sang Pemimpi</div>
+            <div class="suggestion-author">Andrea Hirata</div>
+        </div>
+        <div class="suggestion-item">
+            <div class="suggestion-cover cover-4"><i class="fas fa-moon"></i></div>
+            <div class="suggestion-title">Laskar Pelangi</div>
+            <div class="suggestion-author">Andrea Hirata</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div>© 2025 Pustaka Purnama · Koleksi personalmu</div>
+        <div class="footer-links">
+            <a href="#">Privasi</a>
+            <a href="#">Bantuan</a>
+            <a href="#">Kontak</a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+</div>
+
+<!-- sedikit interaksi agar tab terasa hidup (opsional) -->
+<script>
+    (function() {
+        // Fungsi kecil untuk UX — klik tab memberi efek (tanpa routing)
+        const tabs = document.querySelectorAll('.tab-btn');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                // Di aplikasi nyata, konten grid akan berubah.
+                // Untuk demo, kita cukup ubah visual tab.
+            });
+        });
+    })();
+</script>
+</body>
+</html>
