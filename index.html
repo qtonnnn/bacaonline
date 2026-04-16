@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pustaka Purnama · Baca Online Elegan</title>
+    <!-- Font & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #faf9f6;
+            font-family: 'Inter', sans-serif;
+            color: #2c2c2c;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        /* kontainer utama — memberi ruang bernafas */
+        .wrapper {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* === HEADER — sederhana, elegan === */
+        .main-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0dcd3;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: #7a5d4a;
+        }
+
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #2b2a28;
+        }
+
+        .logo-sub {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: #7e7a72;
+            margin-left: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 400;
+            color: #3e3a34;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            letter-spacing: -0.01em;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a:hover {
+            color: #7a5d4a;
+            border-bottom: 1px solid #7a5d4a;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .user-actions a {
+            color: #3e3a34;
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+
+        .user-actions a:hover {
+            color: #7a5d4a;
+        }
+
+        /* === HERO / SAMBUTAN === */
+        .hero-welcome {
+            margin-bottom: 3.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .greeting h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 3.5rem;
+            color: #1f1e1c;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .greeting .accent-line {
+            width: 70px;
+            height: 2px;
+            background: #b7a089;
+            margin: 0.8rem 0 1.2rem 0;
+        }
+
+        .greeting p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #5b554b;
+            max-width: 500px;
+        }
+
+        .search-compact {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 40px;
+            padding: 0.2rem 0.2rem 0.2rem 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e4dfd7;
+        }
+
+        .search-compact i {
+            color: #9b8e7e;
+            font-size: 1.1rem;
+        }
+
+        .search-compact input {
+            border: none;
+            padding: 0.9rem 1rem;
+            font-size: 1rem;
+            min-width: 240px;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+        }
+
+        .search-compact button {
+            background: #7a5d4a;
+            border: none;
+            color: white;
+            padding: 0.7rem 1.6rem;
+            border-radius: 40px;
+            font-weight: 400;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.25s;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.3px;
+        }
+
+        .search-compact button:hover {
+            background: #5e4739;
+        }
+
+        /* === KATEGORI PILIHAN === */
+        .section-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 3rem 0 1.8rem 0;
+        }
+
+        .section-label h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 2.2rem;
+            color: #2b2a28;
+        }
+
+        .section-label a {
+            text-decoration: none;
+            color: #7a5d4a;
+            font-weight: 400;
+            font-size: 1rem;
+            border-bottom: 1px dotted #b7a089;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 1.5rem 0.8rem;
+            text-align: center;
+            border-radius: 20px;
+            border: 1px solid #ede9e2;
+            transition: all 0.25s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
+            cursor: default;
+        }
+
+        .category-card:hover {
+            border-color: #cbbeb0;
+            box-shadow: 0 12px 24px -12px rgba(90, 70, 55, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .category-icon {
+            font-size: 2.4rem;
+            color: #7a5d4a;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.6rem;
+            margin-bottom: 0.4rem;
+            color: #2c2a27;
+        }
+
+        .category-card p {
+            color: #6e665c;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* === BUKU PILIHAN (GRID UTAMA) === */
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem 1.5rem;
+        }
+
+        .book-item {
+            background: transparent;
+            transition: transform 0.2s;
+        }
+
+        .book-item:hover {
+            transform: translateY(-6px);
+        }
+
+        .book-cover {
+            aspect-ratio: 2/3;
+            background: #e8e2d9;
+            border-radius: 12px;
+            box-shadow: 0 12px 22px -10px rgba(40, 30, 20, 0.08);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            color: #7a5d4a;
+            border: 1px solid #e3dbd1;
+            transition: box-shadow 0.3s;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* sentuhan elegan: overlay halus */
+        .book-cover::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(200,180,160,0.05) 100%);
+        }
+
+        /* variasi warna cover agar lebih hidup namun tetap kalem */
+        .cover-1 { background: #d9d2c5; }
+        .cover-2 { background: #cfc5b8; }
+        .cover-3 { background: #e2d9cd; }
+        .cover-4 { background: #d4c9bc; }
+        .cover-5 { background: #e3dbce; }
+        .cover-6 { background: #cdc1b2; }
+        .cover-7 { background: #dbd1c2; }
+        .cover-8 { background: #d6cbbd; }
+
+        .book-info h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+            color: #1f1e1c;
+        }
+
+        .book-author {
+            font-size: 0.9rem;
+            color: #756e64;
+            margin-bottom: 0.3rem;
+            font-weight: 300;
+        }
+
+        .book-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem 1.2rem;
+            font-size: 0.8rem;
+            color: #7e766b;
+            margin-top: 0.3rem;
+        }
+
+        .book-meta i {
+            margin-right: 4px;
+            color: #a48e7a;
+            font-size: 0.75rem;
+        }
+
+        .rating {
+            color: #b28b5e;
+            letter-spacing: 2px;
+        }
+
+        /* === FITUR LANJUTAN BACA === */
+        .featured-spot {
+            margin: 4rem 0 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            background: #ffffffec;
+            border-radius: 32px;
+            border: 1px solid #e7e0d8;
+            padding: 2rem 2.5rem;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 8px 18px -6px rgba(70, 50, 35, 0.04);
+        }
+
+        .featured-text h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-text p {
+            color: #5f564b;
+            max-width: 500px;
+            font-weight: 300;
+        }
+
+        .featured-cta {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #b7a089;
+            color: #5e4739;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: #7a5d4a;
+            color: white;
+            border-color: #7a5d4a;
+        }
+
+        .btn-primary {
+            background: #7a5d4a;
+            border: 1px solid #7a5d4a;
+            color: white;
+            padding: 0.8rem 2.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #5e4739;
+        }
+
+        /* === FOOTER SEDERHANA === */
+        .main-footer {
+            margin-top: 5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid #e0dcd3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #6f685f;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #6f685f;
+            font-weight: 300;
+        }
+
+        .footer-links a:hover {
+            color: #7a5d4a;
+        }
+
+        /* responsif */
+        @media (max-width: 900px) {
+            .category-grid, .book-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-welcome {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2rem;
+            }
+            .main-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .category-grid, .book-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+            }
+            .featured-spot {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <!-- header elegan -->
+    <header class="main-header">
+        <div class="logo-area">
+            <i class="fas fa-feather-alt logo-icon"></i>
+            <span class="logo-text">Pustaka Purnama</span>
+            <span class="logo-sub">BACA</span>
+        </div>
+        <div class="nav-links">
+            <a href="#">Beranda</a>
+            <a href="#">Jelajah</a>
+            <a href="#">Koleksi</a>
+            <a href="#">Tentang</a>
+        </div>
+        <div class="user-actions">
+            <a href="#" aria-label="Pencarian"><i class="fas fa-search"></i></a>
+            <a href="#" aria-label="Favorit"><i class="far fa-bookmark"></i></a>
+            <a href="#" aria-label="Profil"><i class="far fa-user-circle"></i></a>
+        </div>
+    </header>
+
+    <!-- hero / selamat datang -->
+    <section class="hero-welcome">
+        <div class="greeting">
+            <h1>Temukan dunia <br>dalam setiap halaman.</h1>
+            <div class="accent-line"></div>
+            <p>Ribuan buku klasik & kontemporer, dibaca dengan nyaman dan elegan.</p>
+        </div>
+        <div class="search-compact">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Cari judul, penulis, atau genre..." aria-label="Cari buku">
+            <button><i class="fas fa-arrow-right" style="margin-left: 6px;"></i> Cari</button>
+        </div>
+    </section>
+
+    <!-- kategori pilihan -->
+    <div class="section-label">
+        <h2>Kategori pilihan</h2>
+        <a href="#">Lihat semua <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 4px;"></i></a>
+    </div>
+    <div class="category-grid">
+        <div class="category-card">
+            <i class="fas fa-book-open category-icon"></i>
+            <h3>Fiksi</h3>
+            <p>Novel · Cerpen · Puisi</p>
+        </div>
+        <div class="category-card">
+            <i class="fas fa-landmark category-icon"></i>
+            <h3>Sejarah</h3>
+            <p>Biografi · Peradaban</p>
+        </div>
+        <div class="category-card">
+            <i class="fas fa-flask category-icon"></i>
+            <h3>Sains</h3>
+            <p>Populer · Alam Semesta</p>
+        </div>
+        <div class="category-card">
+            <i class="fas fa-paint-brush category-icon"></i>
+            <h3>Seni & Rupa</h3>
+            <p>Fotografi · Desain</p>
+        </div>
+    </div>
+
+    <!-- buku terbaru / rekomendasi -->
+    <div class="section-label" style="margin-top: 4rem;">
+        <h2>Rekomendasi untukmu</h2>
+        <a href="#">Jelajahi lainnya <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="book-grid">
+        <!-- item 1 -->
+        <div class="book-item">
+            <div class="book-cover cover-1">
+                <i class="fas fa-feather" style="opacity: 0.4; font-size: 2.8rem;"></i>
+            </div>
+            <div class="book-info">
+                <h4>Laut Bercerita</h4>
+                <div class="book-author">Leila S. Chudori</div>
+                <div class="book-meta">
+                    <span><i class="far fa-clock"></i> 1998</span>
+                    <span class="rating"><i class="fas fa-star"></i> 4.8</span>
+                </div>
+            </div>
+        </div>
+        <!-- item 2 -->
+        <div class="book-item">
+            <div class="book-cover cover-2">
+                <i class="fas fa-tree" style="opacity: 0.3; font-size: 2.6rem;"></i>
+            </div>
+            <div class="book-info">
+                <h4>Ronggeng Dukuh Paruk</h4>
+                <div class="book-author">Ahmad Tohari</div>
+                <div class="book-meta">
+                    <span><i class="far fa-clock"></i> 1982</span>
+                    <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                </div>
+            </div>
+        </div>
+        <!-- item 3 -->
+        <div class="book-item">
+            <div class="book-cover cover-3">
+                <i class="fas fa-mountain" style="opacity: 0.35; font-size: 2.6rem;"></i>
+            </div>
+            <div class="book-info">
+                <h4>Pulang</h4>
+                <div class="book-author">Tere Liye</div>
+                <div class="book-meta">
+                    <span><i class="far fa-clock"></i> 2015</span>
+                    <span class="rating"><i class="fas fa-star"></i> 4.7</span>
+                </div>
+            </div>
+        </div>
+        <!-- item 4 -->
+        <div class="book-item">
+            <div class="book-cover cover-4">
+                <i class="fas fa-crown" style="opacity: 0.3; font-size: 2.5rem;"></i>
+            </div>
+            <div class="book-info">
+                <h4>Cantik Itu Luka</h4>
+                <div class="book-author">Eka Kurniawan</div>
+                <div class="book-meta">
+                    <span><i class="far fa-clock"></i> 2002</span>
+                    <span class="rating"><i class="fas fa-star"></i> 4.6</span>
+                </div>
+            </div>
+        </div>
+        <!-- item 5 -->
+        <div class="book-item">
+            <div class="book-cover cover-5">
+                <i class="fas fa-cloud-sun" style="opacity: 0.3; font-size: 2.8rem;"></i>
+            </div>
+            <div class="book-info">
+                <h4>Bumi Manusia</h4>
+                <div class="book-author">Pramoedya Ananta Toer</div>
+                <div class="book-meta">
+                    <span><i class="far fa-clock"></i> 1980</span>
+                    <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                </div>
+            </div>
+        </div>
+        <!-- item 6 -->
+        <div class="book-item">
+            <div class="book-cover cover-6">
+                <i class="fas fa-compass" style="opacity: 0.35; font-size: 2.8rem;"></i>
+            </div>
+            <div class="book-info">
+                <h4>Gadis Kretek</h4>
+                <div class="book-author">Ratih Kumala</div>
+                <div class="book-meta">
+                    <span><i class="far fa-clock"></i> 2012</span>
+                    <span class="rating"><i class="fas fa-star"></i> 4.5</span>
+                </div>
+            </div>
+        </div>
+        <!-- item 7 -->
+        <div class="book-item">
+            <div class="book-cover cover-7">
+                <i class="fas fa-water" style="opacity: 0.3; font-size: 2.7rem;"></i>
+            </div>
+            <div class="book-info">
+                <h4>Perahu Kertas</h4>
+                <div class="book-author">Dee Lestari</div>
+                <div class="book-meta">
+                    <span><i class="far fa-clock"></i> 2009</span>
+                    <span class="rating"><i class="fas fa-star"></i> 4.7</span>
+                </div>
+            </div>
+        </div>
+        <!-- item 8 -->
+        <div class="book-item">
+            <div class="book-cover cover-8">
+                <i class="fas fa-moon" style="opacity: 0.3; font-size: 2.5rem;"></i>
+            </div>
+            <div class="book-info">
+                <h4>Laskar Pelangi</h4>
+                <div class="book-author">Andrea Hirata</div>
+                <div class="book-meta">
+                    <span><i class="far fa-clock"></i> 2005</span>
+                    <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- fitur unggulan: klub baca / rekomendasi personal -->
+    <div class="featured-spot">
+        <div class="featured-text">
+            <h3>Klub Baca Purnama</h3>
+            <p>Bergabung dengan ribuan pembaca, dapatkan rekomendasi personal & diskusi bulanan.</p>
+        </div>
+        <div class="featured-cta">
+            <button class="btn-outline"><i class="far fa-calendar-alt" style="margin-right: 8px;"></i>Jadwal</button>
+            <button class="btn-primary">Mulai sekarang →</button>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="main-footer">
+        <div>© 2025 Pustaka Purnama · Baca dengan rasa</div>
+        <div class="footer-links">
+            <a href="#">Privasi</a>
+            <a href="#">Bantuan</a>
+            <a href="#">Kontak</a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+</div>
+<!-- dekorasi halus — tidak perlu js, murni elegan -->
+</body>
+</html>
