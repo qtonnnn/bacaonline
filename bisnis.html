@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keanggotaan · Pustaka Purnama</title>
+    <!-- Font & Icons (konsisten) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #faf9f6;
+            font-family: 'Inter', sans-serif;
+            color: #2c2c2c;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        .wrapper {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* === HEADER — identik === */
+        .main-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0dcd3;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: #7a5d4a;
+        }
+
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #2b2a28;
+        }
+
+        .logo-sub {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: #7e7a72;
+            margin-left: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 400;
+            color: #3e3a34;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a.active {
+            color: #7a5d4a;
+            border-bottom: 1px solid #7a5d4a;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #7a5d4a;
+            border-bottom: 1px solid #7a5d4a;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .user-actions a {
+            color: #3e3a34;
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+
+        .user-actions a:hover {
+            color: #7a5d4a;
+        }
+
+        /* === JUDUL HALAMAN === */
+        .page-hero {
+            text-align: center;
+            margin: 1.5rem 0 3rem;
+        }
+
+        .page-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 3.5rem;
+            color: #1f1e1c;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-divider {
+            width: 70px;
+            height: 2px;
+            background: #b7a089;
+            margin: 1.2rem auto 1.5rem;
+        }
+
+        .page-hero .subhead {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #5f584f;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* === TABEL PERBANDINGAN MODEL (FOKUS: SUBSCRIPTION, SEKALI BELI, DUKUNGAN) === */
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3.5rem 0 2rem;
+        }
+
+        .model-card {
+            background: #ffffffc7;
+            border-radius: 28px;
+            padding: 2.2rem 1.8rem;
+            border: 1px solid #e7e0d8;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 16px 28px -12px rgba(50, 40, 30, 0.04);
+            transition: transform 0.25s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .model-card:hover {
+            transform: translateY(-6px);
+            border-color: #cfc3b6;
+        }
+
+        .model-badge {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: #7a5d4a;
+            margin-bottom: 1rem;
+        }
+
+        .model-icon {
+            font-size: 2.6rem;
+            color: #7a5d4a;
+            margin-bottom: 1.2rem;
+        }
+
+        .model-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #1f1e1c;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 400;
+            color: #2b2a28;
+            margin-bottom: 0.8rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .price small {
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            color: #6f675d;
+            font-weight: 300;
+        }
+
+        .model-desc {
+            color: #4f4940;
+            margin-bottom: 1.8rem;
+            font-weight: 300;
+            flex: 1;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .feature-list li {
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .feature-list i.fa-check {
+            color: #7a5d4a;
+            font-size: 1rem;
+        }
+
+        .btn-outline-dark {
+            background: transparent;
+            border: 1px solid #b7a089;
+            color: #5e4739;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+            margin-top: auto;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: #7a5d4a;
+            border: 1px solid #7a5d4a;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+            margin-top: auto;
+            font-size: 0.95rem;
+        }
+
+        .btn-outline-dark:hover {
+            background: #7a5d4a;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5e4739;
+            border-color: #5e4739;
+        }
+
+        /* highlight untuk paket rekomendasi */
+        .model-card.featured {
+            border: 2px solid #b7a089;
+            background: #ffffff;
+            box-shadow: 0 22px 34px -16px rgba(100, 70, 50, 0.08);
+        }
+
+        /* === BAGIAN BAGI HASIL & TRANSPARANSI (PENERBIT/PENULIS) === */
+        .section-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 4rem 0 1.8rem;
+        }
+
+        .section-label h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 2.2rem;
+            color: #2b2a28;
+        }
+
+        .split-benefit {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .benefit-card {
+            background: #ffffffd6;
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid #e4dfd7;
+        }
+
+        .benefit-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.9rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .benefit-card h3 i {
+            color: #7a5d4a;
+            font-size: 1.8rem;
+        }
+
+        .royalty-info {
+            background: #f3efe9;
+            border-radius: 18px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .royalty-percent {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #1f1e1c;
+        }
+
+        .divider-light {
+            height: 1px;
+            background: #ddd6ce;
+            margin: 1.5rem 0;
+        }
+
+        /* === FAQ SINGKAT === */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.8rem;
+            margin: 2rem 0 2rem;
+        }
+
+        .faq-item {
+            background: #ffffffc7;
+            padding: 1.5rem 1.8rem;
+            border-radius: 18px;
+            border: 1px solid #ece5dd;
+        }
+
+        .faq-item h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* === CTA PENUTUP === */
+        .cta-box {
+            background: #e8e2d9b0;
+            border-radius: 36px;
+            padding: 2.8rem 2.5rem;
+            margin: 4rem 0 2rem;
+            text-align: center;
+            border: 1px solid #dbd2c7;
+        }
+
+        .cta-box h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem;
+            margin-bottom: 1rem;
+        }
+
+        /* === FOOTER === */
+        .main-footer {
+            margin-top: 4rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid #e0dcd3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #6f685f;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #6f685f;
+            font-weight: 300;
+        }
+
+        .footer-links a:hover {
+            color: #7a5d4a;
+        }
+
+        @media (max-width: 850px) {
+            .model-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .split-benefit {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Header konsisten (dengan menu "Bisnis" atau "Keanggotaan") -->
+        <header class="main-header">
+            <div class="logo-area">
+                <i class="fas fa-feather-alt logo-icon"></i>
+                <span class="logo-text">Pustaka Purnama</span>
+                <span class="logo-sub">KEANGGOTAAN</span>
+            </div>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="jelajah.html">Jelajah</a>
+            <a href="koleksi.html">Koleksi</a>
+            <a href="#" class="active">Bisnis</a>
+            <a href="tentang.html">Tentang</a>
+        </div>
+            <div class="user-actions">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="far fa-bookmark"></i></a>
+                <a href="#"><i class="far fa-user-circle"></i></a>
+            </div>
+        </header>
+
+        <!-- Hero -->
+        <div class="page-hero">
+            <h1>Model yang menguntungkan bersama</h1>
+            <div class="hero-divider"></div>
+            <div class="subhead">Tanpa iklan. Hanya langganan, kepemilikan, dan apresiasi langsung untuk kreator.</div>
+        </div>
+
+        <!-- Tiga pilar bisnis (non-iklan) -->
+        <div class="model-grid">
+            <!-- 1. Berlangganan -->
+            <div class="model-card">
+                <div class="model-badge">PALING DIMINATI</div>
+                <div class="model-icon"><i class="fas fa-infinity"></i></div>
+                <h2>Purnama Plus</h2>
+                <div class="price">Rp 89k <small>/ bulan</small></div>
+                <div class="model-desc">Akses tak terbatas ke seluruh katalog, tanpa batasan. Baca sepuasnya, kapan
+                    saja.</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Ribuan buku & naskah eksklusif</li>
+                    <li><i class="fas fa-check"></i> Mode baca luring</li>
+                    <li><i class="fas fa-check"></i> Undangan klub buku virtual</li>
+                    <li><i class="fas fa-check"></i> Bagi hasil langsung ke penulis</li>
+                </ul>
+                <button class="btn-primary">Mulai 7 hari gratis</button>
+            </div>
+
+            <!-- 2. Beli Satuan (A la carte) -->
+            <div class="model-card">
+                <div class="model-badge">KEPEMILIKAN PENUH</div>
+                <div class="model-icon"><i class="fas fa-book"></i></div>
+                <h2>Beli & Miliki</h2>
+                <div class="price">Mulai Rp 35k <small>/ buku</small></div>
+                <div class="model-desc">Buku favorit tetap di rak digitalmu selamanya. Tanpa biaya berulang.</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Akses permanen, tanpa DRM</li>
+                    <li><i class="fas fa-check"></i> Bisa dibaca di semua perangkat</li>
+                    <li><i class="fas fa-check"></i> Royalti 70% untuk penulis/penerbit</li>
+                    <li><i class="fas fa-check"></i> Diskon khusus anggota Plus</li>
+                </ul>
+                <button class="btn-outline-dark">Jelajahi toko</button>
+            </div>
+
+            <!-- 3. Dukung Kreator (Pay-what-you-want / patronage) -->
+            <div class="model-card featured">
+                <div class="model-badge">DUKUNGAN LANGSUNG</div>
+                <div class="model-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <h2>Purnama Patron</h2>
+                <div class="price">Seikhlasnya <small>/ bulan</small></div>
+                <div class="model-desc">Dukung langsung penulis dan kurator favoritmu. Baca dulu, bayar sesuai manfaat.
+                </div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Akses ke konten "baca dulu"</li>
+                    <li><i class="fas fa-check"></i> Nama tercantum di halaman terima kasih</li>
+                    <li><i class="fas fa-check"></i> 85% dana langsung ke kreator</li>
+                    <li><i class="fas fa-check"></i> Bergabung dengan diskusi eksklusif</li>
+                </ul>
+                <button class="btn-primary">Jadi patron</button>
+            </div>
+        </div>
+
+        <!-- Transparansi bagi hasil (keuntungan untuk penerbit/penulis) -->
+        <div class="section-label">
+            <h2>Kemitraan yang adil & transparan</h2>
+        </div>
+        <div class="split-benefit">
+            <div class="benefit-card">
+                <h3><i class="fas fa-pen-fancy"></i> Untuk Penulis & Penerbit</h3>
+                <p style="margin-bottom: 1rem; color: #4a443c;">Kami percaya kreator adalah jantung ekosistem. Tanpa
+                    biaya pendaftaran, tanpa biaya tersembunyi.</p>
+                <div class="royalty-info">
+                    <div class="royalty-percent">70% – 85%</div>
+                    <div style="color: #5e554a;">Royalti bersih untuk setiap transaksi</div>
+                </div>
+                <ul class="feature-list" style="margin-top: 1rem;">
+                    <li><i class="fas fa-check"></i> Dasbor real-time pantau pembaca & pendapatan</li>
+                    <li><i class="fas fa-check"></i> Promosi lewat kurasi editor</li>
+                    <li><i class="fas fa-check"></i> Pencairan dana fleksibel</li>
+                </ul>
+            </div>
+            <div class="benefit-card">
+                <h3><i class="fas fa-users"></i> Untuk Pembaca Setia</h3>
+                <p style="margin-bottom: 1rem; color: #4a443c;">Setiap rupiah yang Anda belanjakan kembali ke ekosistem
+                    bacaan berkualitas.</p>
+                <div class="royalty-info" style="background: #e8e2d9;">
+                    <div style="font-size: 1.6rem; font-weight: 500; margin-bottom: 0.5rem;">↻ Dampak langsung</div>
+                    <div>70% dari langganan Anda mendanai produksi konten baru & royalti penulis.</div>
+                </div>
+                <ul class="feature-list" style="margin-top: 1rem;">
+                    <li><i class="fas fa-check"></i> Tidak ada kenaikan harga tersembunyi</li>
+                    <li><i class="fas fa-check"></i> Dapat melihat laporan dampak bulanan</li>
+                    <li><i class="fas fa-check"></i> Prioritas dalam klub baca & acara</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FAQ singkat bisnis -->
+        <div class="section-label">
+            <h2>Hal yang sering ditanyakan</h2>
+        </div>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h4>Apakah bisa baca gratis?</h4>
+                <p>Kami menyediakan cuplikan panjang untuk semua buku. Untuk akses penuh tersedia melalui langganan,
+                    pembelian, atau program Patron (baca dulu, bayar seikhlasnya).</p>
+            </div>
+            <div class="faq-item">
+                <h4>Bagaimana penulis mendapat bayaran?</h4>
+                <p>Setiap kali buku dibaca oleh pelanggan Plus atau dibeli satuan, penulis mendapat royalti sesuai porsi
+                    baca/beli. Sistem kami transparan dan bisa dipantau kapan saja.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Apa itu "baca dulu, bayar seikhlasnya"?</h4>
+                <p>Beberapa judul bisa diakses penuh tanpa biaya di muka. Jika kamu merasa puas, kamu bisa memberikan
+                    dukungan sukarela yang langsung disalurkan ke penulis.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Apakah ada biaya tersembunyi?</h4>
+                <p>Tidak. Harga yang tertera sudah final. Kami tidak menjual data pribadi atau menampilkan iklan.</p>
+            </div>
+        </div>
+
+        <!-- CTA gabung sebagai kreator / pembaca -->
+        <div class="cta-box">
+            <h3>Bangun ekosistem baca yang sehat</h3>
+            <p style="margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Baik sebagai
+                pembaca maupun kreator, setiap kontribusi memperkuat pustaka digital yang adil.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button class="btn-primary" style="padding: 1rem 2.5rem;"><i class="fas fa-user-plus"
+                        style="margin-right: 10px;"></i>Daftar sebagai Pembaca</button>
+                <button class="btn-outline-dark" style="padding: 1rem 2.5rem;"><i class="fas fa-upload"></i> Ajukan
+                    Naskah</button>
+            </div>
+            <p style="margin-top: 1.8rem; font-size: 0.9rem; color: #5f584f;"><i class="fas fa-shield-alt"></i> Bebas
+                iklan · Transparan · Berbasis trust</p>
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div>© 2025 Pustaka Purnama · Model bisnis berkelanjutan</div>
+            <div class="footer-links">
+                <a href="#">Privasi</a>
+                <a href="#">Syarat</a>
+                <a href="#">Kontak</a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
